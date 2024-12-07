@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <title>Create Elements</title>
+  <style>
+    .box {
+      border: 1px solid black;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <input type="number" name="elements" class="input" placeholder="Number Of Elements" />
+    <input type="text" name="texts" class="input" placeholder="Elements Text" />
+    <select name="type" class="input">
+      <option value="Div">Div</option>
+      <option value="Section">Section</option>
+    </select>
+    <input type="submit" name="create" value="Create" />
+    <div class="results"></div>
+  </form>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var elementsInput = document.querySelector('input[name="elements"]');
+      var textsInput = document.querySelector('input[name="texts"]');
+      var typeSelect = document.querySelector('select[name="type"]');
+      var resultsDiv = document.querySelector('.results');
+
+      var numElements = parseInt(elementsInput.value);
+      var elementText = textsInput.value;
+      var elementType = typeSelect.value;
+
+      
+      resultsDiv.innerHTML = '';
+
+      
+      for (var i = 1; i <= numElements; i++) {
+        var newElement = document.createElement(elementType);
+        newElement.classList.add('box');
+        newElement.title = 'Element';
+        newElement.id = 'id-' + i;
+        newElement.textContent = elementText;
+        resultsDiv.appendChild(newElement);
+      }
+    });
+  </script>
+</body>
+</html> 
